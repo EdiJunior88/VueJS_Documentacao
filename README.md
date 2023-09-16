@@ -1,4 +1,4 @@
-<img src="img-readme/Vuejs-logo.png" width="50%">
+<img src="img-readme/Vuejs-logo.png" width="70%">
 <h2>Vue.js Documentação</h2>
 
 <p>Vue (pronunciado /vjuː/, como view ) é uma abstração de JavaScript para construção de interfaces de utilizador. Ela constrói sobre a HTML, CSS e JavaScript padrão, e fornece um modelo de programação declarativa baseada em componente que ajuda-te a programar interfaces de utilizador eficientemente, sejam elas simples ou complexas.</p>
