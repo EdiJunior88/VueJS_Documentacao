@@ -3,6 +3,12 @@
 
 <p>Vue (pronunciado /vjuː/, como view ) é uma abstração de JavaScript para construção de interfaces de utilizador. Ela constrói sobre a HTML, CSS e JavaScript padrão, e fornece um modelo de programação declarativa baseada em componente que ajuda-te a programar interfaces de utilizador eficientemente, sejam elas simples ou complexas.</p>
 
+<p>A Vue é uma abstração e ecossistema que cobre a maioria das funcionalidades comuns necessárias no desenvolvimento de frontend. Porém a web é extremamente diversa - as coisas que construímos na web podem variar drasticamente na forma e escala. Com isto em mente, a Vue está desenhada para ser flexível e adotável incrementalmente.</p>
+
+<hr>
+
+<strong>Link da documentação (Português): </strong><a href="https://pt.vuejs.org/guide/introduction.html">https://pt.vuejs.org/guide/introduction.html</a>
+
 <hr>
 
 <strong>Começar</strong>
@@ -12,7 +18,7 @@
   <li>Introdução Rápida</li>
 </ul>
 
-<strong>Fundamentos</strong>ong>
+<strong>Fundamentos</strong>
 
 <ul>
   <li>Criando uma Aplicação</li>
@@ -30,7 +36,7 @@
   <li>Fundamentos de Componente</li>
 </ul>
 
-<strong>Componentes em Profundidade</strong>ong>
+<strong>Componentes em Profundidade</strong>
 
 <ul>
   <li>Registo</li>
@@ -51,7 +57,7 @@
   <li>Extensões</li>
 </ul>
 
-<strong>Componentes Embutidos</strong>ong>
+<strong>Componentes Embutidos</strong>
 
 <ul>
   <li>Transition</li>
@@ -61,7 +67,7 @@
   <li>Suspense</li>
 </ul>
 
-<strong>Escalando para Cima</strong>ong>
+<strong>Escalando para Cima</strong>
 
 <ul>
   <li>Componentes de Ficheiro Único</li>
@@ -72,7 +78,7 @@
   <li>Interpretação no Lado do Servidor</li>
 </ul>
 
-<strong>Boas Práticas</strong>ong>
+<strong>Boas Práticas</strong>
 
 <ul>
   <li>Implementação em Produção</li>
@@ -81,7 +87,7 @@
   <li>Segurança</li>
 </ul>
 
-<strong>TypeScript</strong>ong>
+<strong>TypeScript</strong>
 
 <ul>
   <li>Visão de Conjunto</li>
@@ -89,7 +95,7 @@
   <li>TypeScript com a API de Opções</li>
 </ul>
 
-<strong>Tópicos Adicionais</strong>ong>
+<strong>Tópicos Adicionais</strong>
 
 <ul>
   <li>Maneiras de Usar a Vue</li>
@@ -100,10 +106,6 @@
   <li>Vue e os Componentes da Web</li>
   <li>Técnicas de Animação</li>
 </ul>
-
-<hr>
-
-<strong>Link da documentação (Português): </strong><a href="https://pt.vuejs.org/guide/introduction.html">https://pt.vuejs.org/guide/introduction.html</a>
 
 <hr>
 
