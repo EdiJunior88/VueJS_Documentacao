@@ -49,7 +49,7 @@
   <li>Componentes Assíncronos</li>
 </ul>
 
-<strong>Reutilização</strong>ong>
+<strong>Reutilização</strong>
 
 <ul>
   <li>Funções de Composição</li>
