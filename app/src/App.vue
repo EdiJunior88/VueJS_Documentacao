@@ -1,18 +1,16 @@
 <script setup>
-// const msg = "Isso é uma interpolação de texto";
-const msg = "Hello World";
+const rawHTML = "This should be red";
 </script>
 
 <template>
-  <span>
-    Message: <span class="msg">{{ msg }}</span>
-  </span>
+  <p>
+    Using text interpolation <span style="color: red">{{ rawHTML }}</span>
+  </p>
+  <p>Using v-html directive: <span v-html="rawHTML"></span></p>
 </template>
 
 <style>
-.msg {
-  font-weight: bold;
-  font-size: 1.5rem;
-  color: red;
+span {
+  color: blue;
 }
 </style>
