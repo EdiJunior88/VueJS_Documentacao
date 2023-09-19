@@ -1,10 +1,11 @@
 <script setup>
-const blue = true;
+function alertMessage() {
+  alert("YES! you clicked on me!!!! :-D");
+}
 </script>
 
 <template>
-  <p v-if="blue" :style="{ color: 'blue' }">This text will be blue</p>
-  <p v-else="red" :style="{ color: 'red' }">This text will be red</p>
+  <button v-on:click="alertMessage">Click</button>
 </template>
 
 <style></style>
