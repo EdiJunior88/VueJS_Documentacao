@@ -1,13 +1,10 @@
 <script setup>
-function consoleLog(value) {
-  console.log(value);
-}
-
-const teste = 'Este é um título de múltiplas linhas'
+const blue = true;
 </script>
 
 <template>
-  <span :title="teste"> {{ consoleLog("console.log print in your browser") }} </span>
+  <p v-if="blue" :style="{ color: 'blue' }">This text will be blue</p>
+  <p v-else="red" :style="{ color: 'red' }">This text will be red</p>
 </template>
 
 <style></style>
