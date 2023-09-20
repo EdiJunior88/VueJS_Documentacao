@@ -1,22 +1,22 @@
 <script setup>
-import { ref } from "vue";
+import { nextTick, ref } from "vue";
 
-const obj = ref({
-  nested: { count: 0 },
-  arr: ["foo", "bar"],
-});
+const count = ref(0);
 
-function mutateDeeply() {
-  obj.value.nested.count++;
-  console.log("obj.value.nested.count++ = " + obj.value.nested.count++);
-  
-  obj.value.arr.push("baz");
-  console.log("obj.value.arr.push('baz') = " + obj.value.arr);
+async function increment() {
+  count.value++;
+
+  // DOM ainda não foi atualizado
+  console.log(document.getElementById("counter").textContent); //0
+
+  await nextTick();
+  // DOM agora está atualizado
+  console.log(document.getElementById("counter").textContent); //1
 }
-
-mutateDeeply();
 </script>
 
-<template></template>
+<template>
+  <button id="counter" @click="increment">{{ count }}</button>
+</template>
 
 <style></style>
