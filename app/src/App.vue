@@ -3,15 +3,14 @@ import { ref } from "vue";
 
 const count = ref(0);
 
-/* console.log(count); //{value: 0}
-console.log(count.value); //0
-
-count.value++;
-console.log(count.value); //1 */
+function increment() {
+  // `.value` é necessário na JavaScript
+  count.value++;
+}
 </script>
 
 <template>
-  <button @click="count++">{{ count }}</button>
+  <button @click="increment">{{ count }}</button>
 </template>
 
 <style></style>
