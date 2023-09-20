@@ -1,16 +1,22 @@
 <script setup>
 import { ref } from "vue";
 
-const count = ref(0);
+const obj = ref({
+  nested: { count: 0 },
+  arr: ["foo", "bar"],
+});
 
-function increment() {
-  // `.value` é necessário na JavaScript
-  count.value++;
+function mutateDeeply() {
+  obj.value.nested.count++;
+  console.log("obj.value.nested.count++ = " + obj.value.nested.count++);
+  
+  obj.value.arr.push("baz");
+  console.log("obj.value.arr.push('baz') = " + obj.value.arr);
 }
+
+mutateDeeply();
 </script>
 
-<template>
-  <button @click="increment">{{ count }}</button>
-</template>
+<template></template>
 
 <style></style>
