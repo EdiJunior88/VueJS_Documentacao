@@ -1,11 +1,15 @@
 <script setup>
-function alertMessage() {
-  alert("YES! you clicked on me!!!! :-D");
-}
+import { ref } from "vue";
+
+const count = ref(0);
+
+console.log(count); //{value: 0}
+console.log(count.value); //0
+
+count.value++;
+console.log(count.value); //1
 </script>
 
-<template>
-  <button v-on:click="alertMessage">Click</button>
-</template>
+<template></template>
 
 <style></style>
