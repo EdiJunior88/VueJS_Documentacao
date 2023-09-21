@@ -1,14 +1,10 @@
 <script setup>
-const isActive = true;
-const activeClass = "active";
-const errorClass = "text-danger";
+import MyComponent from "./MyComponent.vue";
 </script>
 
 <template>
-  <div :class="[activeClass, errorClass]">Active Text-Danger</div>
-  <div :class="[isActive ? activeClass : '', errorClass]">
-    Active Text-Danger
-  </div>
+  <!-- quando estivermos utilizando o componente -->
+  <MyComponent class="baz boo" />
 </template>
 
 <style></style>
