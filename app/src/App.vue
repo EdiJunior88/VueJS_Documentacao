@@ -1,23 +1,23 @@
 <script setup>
-import { reactive } from "vue";
+let state = reactive({ count: 0 });
 
-const raw = {};
-const proxy = reactive(raw);
+// a referência acima ({ count: 0 }) não está mais a ser rastreada
+// (conexão da reatividade está perdida!)
+state = reactive({ count: 1 });
 
-// a delegação NÃO é igual ao original.
-console.log(proxy === raw); //false
+/* --------------------------------------------------------------------- */
 
-// a chamada de reactive() sobre o mesmo objeto retorna a mesma delegação
-console.log(reactive(raw) === proxy); //true
+const state2 = reactive({ count: 0 });
 
-// a chamada de reactive() sobre uma delegação retorna a si mesma
-console.log(reactive(proxy) === proxy); //true
+// `count` está desconectado da `state.count` quando desestruturada.
+let { count } = state2.count;
+// não afeta o estado original
+count++;
 
-const proxy2 = reactive({});
-
-const raw2 = {};
-proxy2.nested = raw;
-console.log(proxy2.nested === raw); //false
+// a função recebe um número simples e
+// não será capaz de rastrear as mudanças para `state.count`
+// temos de passar o objeto inteiro para reter a reatividade
+callSomeFunction(state2.count);
 </script>
 
 <template></template>
