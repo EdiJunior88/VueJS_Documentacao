@@ -1,11 +1,14 @@
 <script setup>
 const isActive = true;
-const hasError = false
+const activeClass = "active";
+const errorClass = "text-danger";
 </script>
 
 <template>
-  <div :class="{ active: isActive }">Class Active</div>
-  <div class="static" :class="{ active: isActive, 'text-danger': hasError }">Class Static Active</div>
+  <div :class="[activeClass, errorClass]">Active Text-Danger</div>
+  <div :class="[isActive ? activeClass : '', errorClass]">
+    Active Text-Danger
+  </div>
 </template>
 
 <style></style>
