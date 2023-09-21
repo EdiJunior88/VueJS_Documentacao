@@ -1,36 +1,34 @@
 <script setup>
-import { reactive, ref } from "vue";
+import { computed, reactive } from "vue";
 
-//No exemplo abaixo, count e object são propriedades de alto nível, mas object.id não:
-const count = ref(0);
-const object = { id: ref(1) };
+const author = reactive({
+  name: "John Doe",
+  books: [
+    "Vue 2 - Advanced Guide",
+    "Vue 3 - Basic Guide",
+    "Vue 4 - The Mystery",
+  ],
+});
 
-//Para corrigir isto, podemos desestruturar id à uma propriedade de alto nível:
-const { id } = object;
+/* Neste ponto, o modelo de marcação está ficando um pouco desarrumado. 
+Nós precisamos olhar nele por um segundo antes de perceber que ela realiza 
+um cálculo dependendo de author.books. Mais importante, nós provavelmente 
+não queremos nos repetir se precisarmos incluir este cálculo no modelo de 
+marcação mais de uma vez.
+
+É por isto que para lógica complexa que inclui dados reativos, é recomendado 
+utilizar uma propriedade computada. */
+
+// uma referência computada
+const publishedBooksMessage = computed(() => {
+  return author.books.length > 0 ? "YES" : "NO";
+});
 </script>
 
 <template>
-  <!-- Portanto, esta expressão funciona como esperado: -->
-  {{ count + 1 }}
-
-  <br />
-
-  <!-- ...enquanto isto NÃO: -->
-  {{ object.id + 1 }}
-
-  <br />
-
-  {{ id + 1 }}
-
-  <br />
-
-  <!-- Um outra coisa à notar é que uma referência é desembrulhada 
-    se for o valor avaliado final duma interpolação de texto 
-    (por exemplo, um marcador {{ }}, então o seguinte exemplo desenhará 1) -->
-  {{ object.id }}
-
-  <!-- Isto é apenas um funcionalidade de conveniência da interpolação de texto 
-  e é equivalente ao {{ object.id.value }}. -->
+  <!-- E quisermos exibir mensagens diferentes caso o author tiver alguns livros ou não: -->
+  <p>Has published books:</p>
+  <span>{{ publishedBooksMessage }}</span>
 </template>
 
 <style></style>
