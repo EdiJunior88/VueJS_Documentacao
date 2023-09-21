@@ -1,26 +1,11 @@
 <script setup>
-import { computed, ref } from "vue";
-
-const firstName = ref("John");
-const lastName = ref("Doe");
-
-const fullName = computed({
-  //recuperador
-  get() {
-    return firstName.value + " " + lastName.value;
-  },
-
-  //definidor
-  set(newValue) {
-    // Nota: nós estamos utilizando a sintaxe de atribuição de desestruturação.
-    [firstName.value, lastName.value] = newValue.split(" ");
-  },
-});
+const isActive = true;
+const hasError = false
 </script>
 
 <template>
-  <p>Full Name:</p>
-  <span>{{ fullName }}</span>
+  <div :class="{ active: isActive }">Class Active</div>
+  <div class="static" :class="{ active: isActive, 'text-danger': hasError }">Class Static Active</div>
 </template>
 
 <style></style>
