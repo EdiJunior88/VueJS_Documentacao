@@ -1,23 +1,23 @@
 <script setup>
-import { reactive, ref } from "vue";
+import { reactive } from "vue";
 
-const activeColor = ref("red");
-const fontSize = ref(30);
+const baseStyles = reactive({
+  fontSize: "20px",
+  fontWeight: "bold",
+  border: "3px solid green",
+});
 
-//Frequentemente é uma boa ideia vincular a um objeto de estilo diretamente
-//para que o modelo de marcação esteja mais limpo:
-const styleObject = reactive({
-  color: "red",
-  fontSize: "13px",
+const overridingStyles = reactive({
+  color: "blue",
+  letterSpacing: "0.3rem",
+  padding: "20px",
 });
 </script>
 
 <template>
-  <div :style="{ color: activeColor, fontSize: fontSize + 'px' }">:style</div>
-  <div :style="{ 'font-size': fontSize + 'px' }">
-    :style CSS em "kebab-case"
+  <div :style="[baseStyles, overridingStyles]">
+    :style arranjo de vários objetos de estilo
   </div>
-  <div :style="styleObject">:style vincular a um objeto de estilo</div>
 </template>
 
 <style></style>
