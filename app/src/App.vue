@@ -1,13 +1,19 @@
 <script setup>
-  const items = 'Hello World'
+import { ref } from "vue";
+
+const todos = ref([
+  { name: "Roberto" },
+  { name: "Eduardo" },
+  { name: "Felipe" },
+  { name: "Anderson" },
+]);
 </script>
 
 <template>
   <ul>
-    <template v-for="item in items">
-      <li>{{ item.msg }}</li>
-      <li class="divider" role="presentation"></li>
-    </template>
+    <li v-for="todo in todos" :key="todo.name">
+      {{ todo.name }}
+    </li>
   </ul>
 </template>
 
