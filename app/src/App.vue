@@ -1,43 +1,38 @@
 <script setup>
-import { ref } from "vue";
+import { reactive } from "vue";
 
-const items = ref([
-  {
-    message: "Foo",
-  },
-  {
-    message: "Bar",
-  },
-]);
-
-const parentMessage = ref("Parent");
+const myObject = reactive({
+  title: "How to do lists in Vue",
+  author: "Jane Doe",
+  publishedAt: "2016-04-10",
+});
 </script>
 
 <template>
-  <li v-for="(item, index) in items">
-    {{ parentMessage }} - {{ index }} - {{ item.message }}
-  </li>
+  <ul>
+    <li v-for="value in myObject">
+      {{ value }}
+    </li>
+  </ul>
 
   <!-- 
-    Dentro do escopo de v-for, as expressões do modelo de marcação tem 
-    acesso a todas propriedades do escopo do pai. Além disto, a v-for 
-    também suporta um segundo pseudônimo opcional para índice do item atual:
+    Tu também podes fornecer um segundo pseudônimo 
+    para o nome da propriedade (também conhecido como chave):
    -->
 
+  <ul>
+    <li v-for="(value, key) in myObject">{{ key }}: {{ value }}</li>
+  </ul>
+
   <!-- 
-    O escopo de variável da v-for é similar ao seguinte código de JavaScript:
+    E um outro para o índice:
+   -->
 
-    const parentMessage = 'Parent'
-    const items = [
-      /* ... */
-    ]
-
-    items.forEach((item, index) => {
-      // tem acesso ao `parentMessage` do escopo externo 
-      // mas `item` e `index` apenas estão disponíveis aqui
-      console.log(parentMessage, item.message, index)
-    })
-    -->
+  <ul>
+    <li v-for="(value, key, index) in myObject">
+      {{ index }}. {{ key }}: {{ value }}
+    </li>
+  </ul>
 </template>
 
 <style></style>
