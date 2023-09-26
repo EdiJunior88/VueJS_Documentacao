@@ -1,20 +1,21 @@
 <script setup>
 import { ref } from "vue";
+import MyComponent from "./MyComponent.vue";
 
-const todos = ref([
-  { name: "Roberto" },
-  { name: "Eduardo" },
-  { name: "Felipe" },
-  { name: "Anderson" },
+const items = ref([
+  { name: "Edinaldo" },
+  { name: "Rozana" },
+  { name: "Marinalva" },
+  { name: "Ariclênio" },
+  { name: "Persivaldo" },
 ]);
 </script>
 
 <template>
-  <ul>
-    <li v-for="todo in todos" :key="todo.name">
-      {{ todo.name }}
-    </li>
-  </ul>
+  <MyComponent
+    v-for="(item, index) in items"
+    :name="item.name"
+    :index="index" />
 </template>
 
 <style></style>
