@@ -1,21 +1,12 @@
 <script setup>
-import { ref } from "vue";
-
-const name = ref("Vue.js");
-
-function greet(event) {
-  alert(`Hello ${name.value}`);
-
-  // `event` é um evento de DOM nativo
-  if (event) {
-    alert(event.target.tagName);
-  }
+function say(message) {
+  alert(message);
 }
 </script>
 
 <template>
-  <!-- `greet` é o nome do método definido acima -->
-  <button @click="greet">Greet</button>
+  <button @click="say('hello')">Say Hello</button>
+  <button @click="say('bye')">Say Bye</button>
 </template>
 
 <style></style>
