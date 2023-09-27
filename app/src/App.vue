@@ -1,12 +1,21 @@
 <script setup>
 import { ref } from "vue";
 
-const count = ref(0);
+const name = ref("Vue.js");
+
+function greet(event) {
+  alert(`Hello ${name.value}`);
+
+  // `event` é um evento de DOM nativo
+  if (event) {
+    alert(event.target.tagName);
+  }
+}
 </script>
 
 <template>
-  <button @click="count++">Add 1</button>
-  <p>Count is: {{ count }}</p>
+  <!-- `greet` é o nome do método definido acima -->
+  <button @click="greet">Greet</button>
 </template>
 
 <style></style>
