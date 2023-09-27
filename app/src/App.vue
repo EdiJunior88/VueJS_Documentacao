@@ -1,33 +1,30 @@
 <script setup></script>
 
 <template>
-  <!-- o propagação do evento de clique será interrompida -->
-  <a @click.stop="doThis"></a>
+  <!-- só chama `vm.submit()` quando a `tecla` pressionada for `Enter` -->
+  <input @keyup.enter="submit" />
 
-  <!-- o evento de submeter já não recarregará a página -->
-  <form @submit.prevent="onSubmit"></form>
+  <!-- 
+    Tu podes utilizar diretamente quaisquer nomes de tecla válidos 
+    expostos através de KeyboardEvent.key como modificadores 
+    convertendo-os para "kebab-case".
+   -->
+  <input @keyup.page-down="onPageDown" />
 
-  <!-- modificadores podem ser encadeados -->
-  <a @click.stop.prevent="doThat"></a>
+  <!-- Alt + Enter -->
+  <input @keyup.alt.enter="clear" />
 
-  <!-- apenas o modificador -->
-  <form @submit.prevent></form>
+  <!-- Ctrl + Click -->
+  <div @click.ctrl="doSomething">Do something</div>
 
-  <!-- apenas aciona o manipulador se `event.target` for o próprio elemento -->
-  <!-- por exemplo, não um elemento filho -->
-  <div @click.self="doThat">...</div>
+  <!-- isto disparará mesmo se Alt ou Shift também for pressionado -->
+  <button @click.ctrl="onClick">A</button>
 
-  <!-- utilize o modo de captura quando estiveres adicionando o ouvinte de evento -->
-  <!-- por exemplo, um evento mirando um elemento interno é manipulado aqui antes de ser manipulado por aquele elemento -->
-  <div @click.capture="doThis">...</div>
+  <!-- isto só disparará quando Ctrl e não outras teclas for pressionado -->
+  <button @click.ctrl.exact="onCtrlClick">A</button>
 
-  <!-- o evento de clique será acionado no máximo uma vez -->
-  <a @click.once="doThis"></a>
-
-  <!-- o comportamento padrão do evento de deslocamento (deslocando) acontecerá -->
-  <!-- imediatamente, no lugar de esperar o `onScroll` terminar  -->
-  <!-- neste caso ele contém `event.preventDefault()`                -->
-  <div @scroll.passive="onScroll">...</div>
+  <!-- isto só disparará quando nenhum dos modificadores do sistema for pressionado -->
+  <button @click.exact="onClick">A</button>
 </template>
 
 <style></style>
