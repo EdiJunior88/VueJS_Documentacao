@@ -1,26 +1,33 @@
 <script setup>
-import { onMounted, ref } from "vue";
-
 /* 
-Quando o ref é utilizado dentro de v-for, a referência correspondente
- deve conter uma valor de arranjo, que será povoada com os elementos 
- depois de montar:
+O ref também pode ser utilizado sobre um componente filho. 
+Neste caso a referência será aquela de uma instância de componente:
 */
 
-const list = ref([1, 2, 3]);
-const itemRefs = ref([]);
+/* 
+Se o componente filho estiver utilizando a API de Opções ou não 
+utilizando <script setup>, a instância referenciada será idêntica
+ ao this do componente filho, o que significa que o componente pai 
+ terá total acesso as todas propriedades e métodos do componente filho. 
+ Isto torna-o fácil de criar detalhes de implementação atrelados 
+ firmemente entre o pai e o filho, assim as referências do componente 
+ só deve ser utilizadas quando forem absolutamente necessários - na 
+ maioria dos casos, deves tentar implementar interações entre o pai e 
+ o filho utilizando as interfaces de propriedades e emissão padrão primeiro.
+*/
+
+import { ref, onMounted } from "vue";
+import Child from "./Child.vue";
+
+const child = ref(null);
 
 onMounted(() => {
-  alert(itemRefs.value.map((i) => i.textContent));
+  // child.value segurará uma instância de <Child />
 });
 </script>
 
 <template>
-  <ul>
-    <li v-for="item in list" ref="itemRefs">
-      {{ item }}
-    </li>
-  </ul>
+  <Child ref="child" />
 </template>
 
 <style lang="css" scoped></style>
