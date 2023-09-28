@@ -1,51 +1,22 @@
 <script setup>
-/* 
-Os observadores declarados sincronicamente dentro de setup() 
-ou <script setup> estão vinculados a instância do componente 
-proprietário, e serão paradas automaticamente quando o 
-componente proprietário for desmontado. Na maioria dos casos,
- não precisas te preocupares acerca de parar o observador por ti mesmo.
-
-A chave aqui é que o observador deve ser criado sincronicamente: 
-se o observador for criado em uma resposta assíncrona, ele não 
-estará vinculado ao componente proprietário e deve ser parado 
-manualmente para evitar fugas de memória. Cá está um exemplo:
-*/
-import { watchEffect } from "vue";
-
-// este aqui será parado automaticamente
-watchEffect(() => {});
-
-// ...este aqui não será!
-setTimeout(() => {
-  watchEffect(() => {});
-}, 100);
+import { onMounted, ref } from "vue";
 
 /* 
-Para parar manualmente um observado, utilize a função retornada para 
-lidar com isto. Isto funciona para ambos watch e watchEffect:
+Para obter a referência com a API de Composição, 
+precisamos declarar uma ref com o mesmo nome:
 */
-const unwatch = watchEffect(() => {});
 
-// ...mais tarde, quando for mais necessária
-unwatch();
+// declara uma `ref` para segurar a referência de elemento
+// o nome deve corresponder ao valor de `ref` do modelo de marcação 
+const input = ref(null);
 
-/* 
-Nota que deve haver muito poucos casos onde precisas criar observadores 
-assincronamente, e criação síncrona deve ser a preferida sempre que possível. 
-Se precisares esperar por algum dado assíncrono, podes tornar a tua lógica 
-de observação condicional:
-*/
-// dados a serem carregados assincronamente
-const data = ref(null);
-
-watchEffect(() => {
-  if (data.value) {
-    // faça algo quando os dados forem carregados
-  }
+onMounted(() => {
+  input.value.focus();
 });
 </script>
 
-<template></template>
+<template>
+  <input ref="input" />
+</template>
 
 <style lang="css" scoped></style>
