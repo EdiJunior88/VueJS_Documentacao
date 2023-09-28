@@ -2,15 +2,14 @@
 
 <template>
   <!-- 
-    A v-model também suporta vinculações de valor de valores 
-    que não são sequência de caracteres! No exemplo acima, 
-    quando a opção é selecionada, selected será definida 
-    para o valor literal de objeto de { number: 123 }.
+    Por padrão, a v-model sincroniza a entrada com o dado 
+    depois de cada evento de input (com a exceção da 
+    composição de IME como especificada acima). Tu podes 
+    adicionar o modificador lazy no lugar de sincronizar 
+    depois dos eventos change:
    -->
-  <select v-model="selected">
-    <!-- inline object literal -->
-    <option :value="{ number: 123 }">123</option>
-  </select>
+  <!-- sincronizado depois de "change" no lugar de "input" -->
+  <input v-model.lazy="msg" />
 </template>
 
 <style lang="scss" scoped></style>
