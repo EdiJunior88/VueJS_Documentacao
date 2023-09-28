@@ -1,19 +1,30 @@
 <script setup>
-import { onMounted } from "vue";
+import { ref, watch } from "vue";
 
-onMounted(() => {
-  console.log(`The component is now mounted`);
+const question = ref("");
+const answer = ref("Questions usually contai a question mark. ;-)");
+
+// `watch` trabalha diretamente sobre uma referência
+watch(question, async (newQuestion, oldQuestion) => {
+  if (newQuestion.indexOf("?") > -1) {
+    answer.value = "Thinking...";
+
+    try {
+      const res = await fetch("https://yesno.wtf/api");
+      answer.value = (await res.json()).answer;
+    } catch (error) {
+      answer.value = "Error! could not reach the API. " + error;
+    }
+  }
 });
 </script>
 
 <template>
-  <!-- 
-    Quando estiveres chamando onMounted, a Vue associa 
-    automaticamente a função de resposta registada com 
-    a atual instância do componente ativo. Isto exige 
-    que estes gatilhos sejam registados de forma síncrona 
-    durante a definição de componente.
-   -->
+  <p>
+    Ask a yes/no question:
+    <input v-model="question" />
+  </p>
+  <p>{{ answer }}</p>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="css" scoped></style>
