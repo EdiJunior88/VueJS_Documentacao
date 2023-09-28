@@ -1,11 +1,10 @@
 <script setup>
-import { ref } from "vue";
-
-const count = ref(0);
+import ButtonCounter from "./ButtonCounter.vue";
 </script>
 
 <template>
-  <button @click="count++">You clicked me {{ count }} times.</button>
+  <h1>Here is a child component!</h1>
+  <ButtonCounter />
 </template>
 
 <style lang="css" scoped></style>
