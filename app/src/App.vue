@@ -1,52 +1,22 @@
 <script setup>
 import { ref } from "vue";
 
+const picked = ref("");
+const toggle = ref("");
 const selected = ref("");
-const selected2 = ref([]);
-const selected3 = ref("A");
-const options = ref([
-  { text: "One", value: "A" },
-  { text: "Two", value: "B" },
-  { text: "Three", value: "C" },
-]);
 </script>
 
 <template>
-  <div>Selected: {{ selected }}</div>
+  <!-- `picked` é uma sequência de carácter "a" quando for confirmada -->
+  <input type="radio" v-model="picked" value="a" />
 
+  <!-- `toggle` é ou verdadeiro ou é falso -->
+  <input type="checkbox" v-model="toggle" />
+
+  <!-- `selected` é uma sequência de caracteres "abc" quando a primeira opção for selecionada -->
   <select v-model="selected">
-    <option disabled value="">Please select one</option>
-    <option>A</option>
-    <option>B</option>
-    <option>C</option>
+    <option value="abc">ABC</option>
   </select>
-
-  <!-- 
-    Seleção de várias escolhas (vinculadas ao arranjo (array)):
-   -->
-  <div>Selected: {{ selected2 }}</div>
-
-  <select v-model="selected2" multiple>
-    <option>A</option>
-    <option>B</option>
-    <option>C</option>
-  </select>
-
-  <!-- 
-    As opções do elemento de seleção podem ser dinamicamente 
-    interpretadas com a v-for:
-   -->
-  <select v-model="selected3">
-    <option v-for="option in options" :value="option.value">
-      {{ option.text }}
-    </option>
-  </select>
-
-  <div>Selected: {{ selected3 }}</div>
 </template>
 
-<style>
-select[multiple] {
-  width: 100px;
-}
-</style>
+<style lang="scss" scoped></style>
