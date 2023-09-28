@@ -1,22 +1,20 @@
-<script setup>
-import { ref } from "vue";
-
-const picked = ref("");
-const toggle = ref("");
-const selected = ref("");
-</script>
+<script setup></script>
 
 <template>
-  <!-- `picked` é uma sequência de carácter "a" quando for confirmada -->
-  <input type="radio" v-model="picked" value="a" />
+  <input type="checkbox" v-model="toggle" true-value="yes" false-value="no" />
 
-  <!-- `toggle` é ou verdadeiro ou é falso -->
-  <input type="checkbox" v-model="toggle" />
-
-  <!-- `selected` é uma sequência de caracteres "abc" quando a primeira opção for selecionada -->
-  <select v-model="selected">
-    <option value="abc">ABC</option>
-  </select>
+  <!-- 
+    A true-value e false-value são atributos específicos de Vue 
+    que só funcionam com a v-model. Aqui o valor da propriedade 
+    toggle será definido para 'yes' quando a caixa for confirmada, 
+    e definida para 'no' quando a confirmação for desfeita. 
+    Tu também podes vinculá-los à valores dinâmicos utilizando a v-bind:
+   -->
+  <input
+    type="checkbox"
+    v-model="toggle"
+    :true-value="dynamicTrueValue"
+    :false-value="dynamicFalseValue" />
 </template>
 
 <style lang="scss" scoped></style>
