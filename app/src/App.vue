@@ -2,14 +2,16 @@
 
 <template>
   <!-- 
-    Por padrão, a v-model sincroniza a entrada com o dado 
-    depois de cada evento de input (com a exceção da 
-    composição de IME como especificada acima). Tu podes 
-    adicionar o modificador lazy no lugar de sincronizar 
-    depois dos eventos change:
+    Se quiseres que a entrada do utilizador seja automaticamente 
+    tratada como um número, podes adicionar o modificador number 
+    as tuas entradas geridas pela v-model:
    -->
-  <!-- sincronizado depois de "change" no lugar de "input" -->
-  <input v-model.lazy="msg" />
+  <input v-model.number="age" />
+  <!-- 
+    Se o valor não puder ser analisado com parseFloat(), então 
+    o valor original é utilizado no lugar. O modificador number 
+    é aplicado automaticamente se a entrada tiver o type="number".
+   -->
 </template>
 
 <style lang="scss" scoped></style>
