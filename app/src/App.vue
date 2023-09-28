@@ -1,22 +1,38 @@
 <script setup>
 /* 
-O watch é preguiçoso por padrão: a resposta não será chamada 
-até que a fonte observada tenha mudado. Mas em alguns casos 
-podemos querer que a mesma lógica de resposta seja executada 
-incansavelmente - por exemplo, podemos querer pedir alguns 
-dados iniciais, e depois pedir novamente os dados sempre que 
-o estado relevante mudar.
-
-Nós podemos forçar uma resposta do observador a ser executada 
-imediatamente passando a opção immediate: true:
+É comum para a função de resposta do observador usar exatamente 
+o mesmo estado reativo como fonte. Por exemplo, considere o 
+seguinte código, que usa um observador para carregar um recurso 
+remoto sempre que a referência todoId mudar:
 */
+const todoId = ref(1);
+const data = ref(null);
+
 watch(
-  source,
-  (newValue, oldValue) => {
-    // executado imediatamente, depois novamente quando `source` mudar
+  todoId,
+  async () => {
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
+    );
+    data.value = await response.json();
   },
   { immediate: true }
 );
+
+/* 
+Em particular, repare em como o observador usa o todoId duas vezes, 
+uma vez como fonte e depois novamente dentro da função de resposta.
+
+Isto pode ser simplificado com watchEffect(). A watchEffect() 
+permite-nos rastrear as dependências reativas da função de resposta 
+automaticamente. O observador acima pode ser reescrito como:
+*/
+watchEffect(async () => {
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
+  );
+  data.value = await response.json();
+});
 </script>
 
 <template></template>
