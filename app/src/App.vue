@@ -1,10 +1,16 @@
 <script setup>
-import ButtonCounter from "./ButtonCounter.vue";
+import { ref } from "vue";
+import BlogPost from "./BlogPost.vue";
+
+const posts = ref([
+  { id: 1, title: "My Journey with Vue" },
+  { id: 2, title: "Blogging with Vue" },
+  { id: 3, title: "Why Vue is so fun" },
+]);
 </script>
 
 <template>
-  <h1>Here is a child component!</h1>
-  <ButtonCounter />
+  <BlogPost v-for="post in posts" :key="post.id" :title="post.title"></BlogPost>
 </template>
 
 <style lang="css" scoped></style>
