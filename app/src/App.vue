@@ -1,33 +1,38 @@
 <script setup>
-import { ref, watch } from "vue";
+const obj = reactive({ count: 0 });
 
-const x = ref(0);
-const y = ref(0);
-
-/* 
-O primeiro argumento do watch pode ser de diferentes 
-tipos de "fontes" reativas: pode ser uma referência 
-(incluindo referências computadas), um objeto reativo, 
-uma função recuperada, ou um arranjo de várias fontes:
-*/
-
-/* Referência única */
-watch(x, (newX) => {
-  console.log(`x is ${newX}`);
+watch(obj, (newValue, oldValue) => {
+  // dispara sobre mutações de propriedade encaixada
+  // Nota: cá `newValue` será igual ao `oldValue`
+  // porque ambos eles apontam para o mesmo objeto!
 });
 
-/* Recuperador */
+obj.count++;
+
+/* 
+Isto deve ser distinguido de um recuperador que retorna 
+um objeto reativo - no recente caso, a resposta só disparará 
+se o recuperador retornar um objeto diferente:
+*/
 watch(
-  () => x.value + y.value,
-  (sum) => {
-    console.log(`sum of x + y is: ${sum}`);
+  () => state.someObject,
+  () => {
+    // dispara só quando `state.someObject` for substituído
   }
 );
 
-/* arranjo de várias fontes */
-watch([x, () => y.value], ([newX, newY]) => {
-  console.log(`x is ${newX} and y is ${newY}`);
-});
+/* 
+Tu podes, no entanto, forçar o segundo caso para um observador 
+profundo utilizando explicitamente a opção deep:
+*/
+watch(
+  () => state.someObject,
+  (newValue, oldValue) => {
+    // Nota: cá `newValue` será igual ao `oldValue`
+    // *a menos que* `state.someObject` tenha sido substituído
+  },
+  { deep: true }
+);
 </script>
 
 <template></template>
