@@ -1,37 +1,34 @@
 <script setup>
 /* 
-É comum para a função de resposta do observador usar exatamente 
-o mesmo estado reativo como fonte. Por exemplo, considere o 
-seguinte código, que usa um observador para carregar um recurso 
-remoto sempre que a referência todoId mudar:
-*/
-const todoId = ref(1);
-const data = ref(null);
+Quando alterares o estado reativo, ele pode acionar 
+tanto as atualizações de componente de Vue e respostas 
+de observador criadas por ti.
 
-watch(
-  todoId,
-  async () => {
-    const response = await fetch(
-      `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
-    );
-    data.value = await response.json();
-  },
-  { immediate: true }
-);
+Por padrão, respostas de observador criadas pelo utilizador 
+são chamadas antes das atualização de componente de Vue. Isto 
+significa que se tentares acessar o DOM de dentro de uma 
+resposta de observador, o DOM estará no estado antes da Vue 
+tiver aplicado quaisquer atualizações.
+
+Se quiseres acessar o DOM em uma resposta de observador depois 
+da Vue tiver atualizado-o, precisas especificar a opção flush: 'post':
+*/
+watch(source, callback, {
+  flush: "post",
+});
+
+watchEffect(callback, {
+  flush: "post",
+});
 
 /* 
-Em particular, repare em como o observador usa o todoId duas vezes, 
-uma vez como fonte e depois novamente dentro da função de resposta.
-
-Isto pode ser simplificado com watchEffect(). A watchEffect() 
-permite-nos rastrear as dependências reativas da função de resposta 
-automaticamente. O observador acima pode ser reescrito como:
+A watchEffect() pós-fluxo também tem um pseudônimo de conveniência, 
+watchPostEffect():
 */
-watchEffect(async () => {
-  const response = await fetch(
-    `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
-  );
-  data.value = await response.json();
+import { watchPostEffect } from "vue";
+
+watchPostEffect(() => {
+  /* executada depois das atualizações de Vue */
 });
 </script>
 
