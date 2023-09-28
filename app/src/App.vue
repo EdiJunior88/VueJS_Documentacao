@@ -1,12 +1,19 @@
-<script setup></script>
+<script setup>
+import { onMounted } from "vue";
+
+onMounted(() => {
+  console.log(`The component is now mounted`);
+});
+</script>
 
 <template>
   <!-- 
-   Se quiseres que espaços em branco da entrada do utilizador 
-   sejam cortados automaticamente, podes adicionar o modificador 
-   trim as tuas entradas geridas pela v-model:
+    Quando estiveres chamando onMounted, a Vue associa 
+    automaticamente a função de resposta registada com 
+    a atual instância do componente ativo. Isto exige 
+    que estes gatilhos sejam registados de forma síncrona 
+    durante a definição de componente.
    -->
-  <input v-model.trim="msg" />
 </template>
 
 <style lang="scss" scoped></style>
