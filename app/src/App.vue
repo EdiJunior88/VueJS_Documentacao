@@ -1,37 +1,21 @@
 <script setup>
-const obj = reactive({ count: 0 });
-
-watch(obj, (newValue, oldValue) => {
-  // dispara sobre mutações de propriedade encaixada
-  // Nota: cá `newValue` será igual ao `oldValue`
-  // porque ambos eles apontam para o mesmo objeto!
-});
-
-obj.count++;
-
 /* 
-Isto deve ser distinguido de um recuperador que retorna 
-um objeto reativo - no recente caso, a resposta só disparará 
-se o recuperador retornar um objeto diferente:
+O watch é preguiçoso por padrão: a resposta não será chamada 
+até que a fonte observada tenha mudado. Mas em alguns casos 
+podemos querer que a mesma lógica de resposta seja executada 
+incansavelmente - por exemplo, podemos querer pedir alguns 
+dados iniciais, e depois pedir novamente os dados sempre que 
+o estado relevante mudar.
+
+Nós podemos forçar uma resposta do observador a ser executada 
+imediatamente passando a opção immediate: true:
 */
 watch(
-  () => state.someObject,
-  () => {
-    // dispara só quando `state.someObject` for substituído
-  }
-);
-
-/* 
-Tu podes, no entanto, forçar o segundo caso para um observador 
-profundo utilizando explicitamente a opção deep:
-*/
-watch(
-  () => state.someObject,
+  source,
   (newValue, oldValue) => {
-    // Nota: cá `newValue` será igual ao `oldValue`
-    // *a menos que* `state.someObject` tenha sido substituído
+    // executado imediatamente, depois novamente quando `source` mudar
   },
-  { deep: true }
+  { immediate: true }
 );
 </script>
 
