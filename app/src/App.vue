@@ -2,21 +2,25 @@
 import { onMounted, ref } from "vue";
 
 /* 
-Para obter a referência com a API de Composição, 
-precisamos declarar uma ref com o mesmo nome:
+Quando o ref é utilizado dentro de v-for, a referência correspondente
+ deve conter uma valor de arranjo, que será povoada com os elementos 
+ depois de montar:
 */
 
-// declara uma `ref` para segurar a referência de elemento
-// o nome deve corresponder ao valor de `ref` do modelo de marcação 
-const input = ref(null);
+const list = ref([1, 2, 3]);
+const itemRefs = ref([]);
 
 onMounted(() => {
-  input.value.focus();
+  alert(itemRefs.value.map((i) => i.textContent));
 });
 </script>
 
 <template>
-  <input ref="input" />
+  <ul>
+    <li v-for="item in list" ref="itemRefs">
+      {{ item }}
+    </li>
+  </ul>
 </template>
 
 <style lang="css" scoped></style>
