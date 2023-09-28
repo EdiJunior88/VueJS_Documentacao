@@ -1,20 +1,14 @@
 <script setup></script>
 
 <template>
-  <input type="checkbox" v-model="toggle" true-value="yes" false-value="no" />
-
   <!-- 
-    A true-value e false-value são atributos específicos de Vue 
-    que só funcionam com a v-model. Aqui o valor da propriedade 
-    toggle será definido para 'yes' quando a caixa for confirmada, 
-    e definida para 'no' quando a confirmação for desfeita. 
-    Tu também podes vinculá-los à valores dinâmicos utilizando a v-bind:
+    O pick será definido para o valor de first quando 
+    a primeira entrada de rádio for confirmada, e 
+    definida para o valor de second quando o segundo 
+    for confirmado.
    -->
-  <input
-    type="checkbox"
-    v-model="toggle"
-    :true-value="dynamicTrueValue"
-    :false-value="dynamicFalseValue" />
+  <input type="radio" v-model="pick" :value="first" />
+  <input type="radio" v-model="pick" :value="second" />
 </template>
 
 <style lang="scss" scoped></style>
