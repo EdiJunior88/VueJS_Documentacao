@@ -1,30 +1,35 @@
 <script setup>
 import { ref, watch } from "vue";
 
-const question = ref("");
-const answer = ref("Questions usually contai a question mark. ;-)");
+const x = ref(0);
+const y = ref(0);
 
-// `watch` trabalha diretamente sobre uma referência
-watch(question, async (newQuestion, oldQuestion) => {
-  if (newQuestion.indexOf("?") > -1) {
-    answer.value = "Thinking...";
+/* 
+O primeiro argumento do watch pode ser de diferentes 
+tipos de "fontes" reativas: pode ser uma referência 
+(incluindo referências computadas), um objeto reativo, 
+uma função recuperada, ou um arranjo de várias fontes:
+*/
 
-    try {
-      const res = await fetch("https://yesno.wtf/api");
-      answer.value = (await res.json()).answer;
-    } catch (error) {
-      answer.value = "Error! could not reach the API. " + error;
-    }
+/* Referência única */
+watch(x, (newX) => {
+  console.log(`x is ${newX}`);
+});
+
+/* Recuperador */
+watch(
+  () => x.value + y.value,
+  (sum) => {
+    console.log(`sum of x + y is: ${sum}`);
   }
+);
+
+/* arranjo de várias fontes */
+watch([x, () => y.value], ([newX, newY]) => {
+  console.log(`x is ${newX} and y is ${newY}`);
 });
 </script>
 
-<template>
-  <p>
-    Ask a yes/no question:
-    <input v-model="question" />
-  </p>
-  <p>{{ answer }}</p>
-</template>
+<template></template>
 
 <style lang="css" scoped></style>
