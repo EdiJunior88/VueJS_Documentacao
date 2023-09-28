@@ -1,34 +1,48 @@
 <script setup>
 /* 
-Quando alterares o estado reativo, ele pode acionar 
-tanto as atualizações de componente de Vue e respostas 
-de observador criadas por ti.
+Os observadores declarados sincronicamente dentro de setup() 
+ou <script setup> estão vinculados a instância do componente 
+proprietário, e serão paradas automaticamente quando o 
+componente proprietário for desmontado. Na maioria dos casos,
+ não precisas te preocupares acerca de parar o observador por ti mesmo.
 
-Por padrão, respostas de observador criadas pelo utilizador 
-são chamadas antes das atualização de componente de Vue. Isto 
-significa que se tentares acessar o DOM de dentro de uma 
-resposta de observador, o DOM estará no estado antes da Vue 
-tiver aplicado quaisquer atualizações.
-
-Se quiseres acessar o DOM em uma resposta de observador depois 
-da Vue tiver atualizado-o, precisas especificar a opção flush: 'post':
+A chave aqui é que o observador deve ser criado sincronicamente: 
+se o observador for criado em uma resposta assíncrona, ele não 
+estará vinculado ao componente proprietário e deve ser parado 
+manualmente para evitar fugas de memória. Cá está um exemplo:
 */
-watch(source, callback, {
-  flush: "post",
-});
+import { watchEffect } from "vue";
 
-watchEffect(callback, {
-  flush: "post",
-});
+// este aqui será parado automaticamente
+watchEffect(() => {});
+
+// ...este aqui não será!
+setTimeout(() => {
+  watchEffect(() => {});
+}, 100);
 
 /* 
-A watchEffect() pós-fluxo também tem um pseudônimo de conveniência, 
-watchPostEffect():
+Para parar manualmente um observado, utilize a função retornada para 
+lidar com isto. Isto funciona para ambos watch e watchEffect:
 */
-import { watchPostEffect } from "vue";
+const unwatch = watchEffect(() => {});
 
-watchPostEffect(() => {
-  /* executada depois das atualizações de Vue */
+// ...mais tarde, quando for mais necessária
+unwatch();
+
+/* 
+Nota que deve haver muito poucos casos onde precisas criar observadores 
+assincronamente, e criação síncrona deve ser a preferida sempre que possível. 
+Se precisares esperar por algum dado assíncrono, podes tornar a tua lógica 
+de observação condicional:
+*/
+// dados a serem carregados assincronamente
+const data = ref(null);
+
+watchEffect(() => {
+  if (data.value) {
+    // faça algo quando os dados forem carregados
+  }
 });
 </script>
 
