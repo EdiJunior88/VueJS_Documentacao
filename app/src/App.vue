@@ -1,14 +1,24 @@
 <script setup>
 /* 
-Nós temos estado a utilizar marcadores de auto-fechamento 
-para os componentes nos exemplos de código anterior:
+Alguns elementos de HTML, tais como <ul>, <ol>, <table> e <select> 
+têm restrições sobre quais elementos podem aparecer dentro deles, 
+e alguns elementos tais como <li>, <tr>, e <option> só podem 
+aparecer dentro certos elementos.
 
-<MyComponent />
+Isto levará a problemas quando estiveres utilizando componentes com 
+elementos que têm tais restrições. Por exemplo:
 
-Nos modelos de marcação de DOM, no entanto, devemos sempre 
-incluir explicito os marcadores de fechamento:
+<table>
+  <blog-post-row></blog-post-row>
+</table>
 
-<my-component></my-component>
+O componente personalizado <blog-post-row> será levantado como conteúdo 
+inválido, causando erros no resultado interpretado final. Nós podemos 
+utilizar o atributo is especial como uma solução:
+
+<table>
+  <tr is="vue:blog-post-row"></tr>
+</table>
 */
 </script>
 
