@@ -1,17 +1,19 @@
 <script setup>
 import { ref } from 'vue'
 
-const count = ref(0)
+const text = ref('')
 
-function increment() {
-  //update component state
-  //atualize o estado do componente
-  count.value++
+function onInput(e) {
+  text.value = e.target.value
 }
 </script>
 
 <template>
-  <button @click="increment">count is: {{ count }}</button>
+  <input :value="text" @input="onInput" placeholder="Type here" />
+  <p>{{ text }}</p>
+  <!-- ou -->
+  <!-- <input v-model="text" placeholder="Type here">
+  <p>{{ text }}</p> -->
 </template>
 
 <style lang="css" scoped></style>
