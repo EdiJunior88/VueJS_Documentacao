@@ -1,27 +1,36 @@
 <script setup>
-/* 
-Alguns elementos de HTML, tais como <ul>, <ol>, <table> e <select> 
-têm restrições sobre quais elementos podem aparecer dentro deles, 
-e alguns elementos tais como <li>, <tr>, e <option> só podem 
-aparecer dentro certos elementos.
+import { ref } from "vue";
 
-Isto levará a problemas quando estiveres utilizando componentes com 
-elementos que têm tais restrições. Por exemplo:
+let id = 0;
+const newTodo = ref("");
+const todos = ref([
+  { id: id++, text: "Learn HTML" },
+  { id: id++, text: "Learn JavaScript" },
+  { id: id++, text: "Learn Vue" },
+]);
 
-<table>
-  <blog-post-row></blog-post-row>
-</table>
+function addTodo() {
+  todos.value.push({ id: id++, text: newTodo.value });
+  newTodo.value = "";
+}
 
-O componente personalizado <blog-post-row> será levantado como conteúdo 
-inválido, causando erros no resultado interpretado final. Nós podemos 
-utilizar o atributo is especial como uma solução:
-
-<table>
-  <tr is="vue:blog-post-row"></tr>
-</table>
-*/
+function removeTodo(todo) {
+  todos.value = todos.value.filter((t) => t !== todo);
+}
 </script>
 
-<template></template>
+<template>
+  <form @submit.prevent="addTodo">
+    <input v-model="newTodo" />
+    <button>Add Todo</button>
+  </form>
+
+  <ul>
+    <li v-for="todo in todos" :key="todo.id">
+      {{ todo.text }}
+      <button @click="removeTodo(todo)">X</button>
+    </li>
+  </ul>
+</template>
 
 <style lang="css" scoped></style>
