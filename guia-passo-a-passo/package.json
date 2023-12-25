@@ -10,7 +10,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "vue": "^3.3.12"
+    "vue": "^3.3.13"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.6.1",
