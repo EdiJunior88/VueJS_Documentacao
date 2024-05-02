@@ -4,8 +4,8 @@
 EdiJunior88/VueJS_Documentacao is built on the following main stack:
 
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
-- [ESLint](http://eslint.org/) – Code Review
 - [Vue.js](http://vuejs.org/) – Javascript UI Libraries
+- [ESLint](http://eslint.org/) – Code Review
 - [Prettier](https://prettier.io/) – Code Review
 - [Vite](https://vitejs.dev/) – JS Build Tools / JS Task Runners
 
@@ -18,8 +18,8 @@ Full tech stack [here](/techstack.md)
 EdiJunior88/VueJS_Documentacao is built on the following main stack:
 
 - <img width='25' height='25' src='https://img.stackshare.io/service/1209/javascript.jpeg' alt='JavaScript'/> [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
-- <img width='25' height='25' src='https://img.stackshare.io/service/3337/Q4L7Jncy.jpg' alt='ESLint'/> [ESLint](http://eslint.org/) – Code Review
 - <img width='25' height='25' src='https://img.stackshare.io/service/3837/paeckCWC.png' alt='Vue.js'/> [Vue.js](http://vuejs.org/) – Javascript UI Libraries
+- <img width='25' height='25' src='https://img.stackshare.io/service/3337/Q4L7Jncy.jpg' alt='ESLint'/> [ESLint](http://eslint.org/) – Code Review
 - <img width='25' height='25' src='https://img.stackshare.io/service/7035/default_66f265943abed56bcdbfca1c866a4261b1fbb063.jpg' alt='Prettier'/> [Prettier](https://prettier.io/) – Code Review
 - <img width='25' height='25' src='https://img.stackshare.io/service/21547/default_1aeac791cde11ff66cc0b20dcc6144eeb185c905.png' alt='Vite'/> [Vite](https://vitejs.dev/) – JS Build Tools / JS Task Runners
 
@@ -32,7 +32,7 @@ Full tech stack [here](/techstack.md)
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [EdiJunior88/VueJS_Documentacao](https://github.com/EdiJunior88/VueJS_Documentacao)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|12<br/>Tools used|02/04/24 <br/>Report generated|
+|12<br/>Tools used|05/02/24 <br/>Report generated|
 |------|------|
 </div>
 
@@ -93,7 +93,7 @@ Full tech stack [here](/techstack.md)
   <br>
   <sub><a href="https://prettier.io/">Prettier</a></sub>
   <br>
-  <sub>v3.2.4</sub>
+  <sub>v3.2.5</sub>
 </td>
 
 <td align='center'>
@@ -122,9 +122,9 @@ Full tech stack [here](/techstack.md)
 
 |NAME|VERSION|LAST UPDATED|LAST UPDATED BY|LICENSE|VULNERABILITIES|
 |:------|:------|:------|:------|:------|:------|
-|[@vue/eslint-config-prettier](https://www.npmjs.com/@vue/eslint-config-prettier)|v9.0.0|01/29/24|dependabot[bot] |MIT|N/A|
-|[eslint-plugin-vue](https://www.npmjs.com/eslint-plugin-vue)|v9.20.1|01/29/24|dependabot[bot] |MIT|N/A|
-|[vite](https://www.npmjs.com/vite)|v5.0.12|01/21/24|renovate[bot] |N/A|N/A|
+|[@vue/eslint-config-prettier](https://www.npmjs.com/@vue/eslint-config-prettier)|v9.0.0|04/22/24|dependabot[bot] |MIT|N/A|
+|[eslint-plugin-vue](https://www.npmjs.com/eslint-plugin-vue)|v9.25.0|04/22/24|dependabot[bot] |MIT|N/A|
+|[vite](https://www.npmjs.com/vite)|v5.0.13|04/03/24|dependabot[bot] |N/A|N/A|
 |[vue](https://www.npmjs.com/vue)|v3.4.15|09/16/23|EdiJunior88 |MIT|N/A|
 
 <br/>
